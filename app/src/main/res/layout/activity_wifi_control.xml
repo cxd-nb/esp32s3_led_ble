@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -16,11 +17,15 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp" />
 
+    <!-- WiFi 开关卡片 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:background="@color/card_bg"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
         android:layout_marginBottom="16dp">
         <TextView
             android:layout_width="0dp"
@@ -28,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="WiFi 开关"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
         <Switch
             android:id="@+id/switchWifi"
             android:layout_width="wrap_content"
@@ -41,30 +46,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="搜索附近 WiFi"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:backgroundTint="@color/primary"
         android:textColor="@color/black"
         android:layout_marginBottom="12dp" />
 
-    <ListView
-        android:id="@+id/listWifi"
+    <!-- WiFi 列表卡片 -->
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/card_bg"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp">
+        <ListView
+            android:id="@+id/listWifi"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@color/divider"
+            android:dividerHeight="1dp" />
+    </FrameLayout>
 
-    <EditText
-        android:id="@+id/etWifiPassword"
+    <!-- 密码输入框（带可见切换） -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="输入 WiFi 密码"
+        android:hint="WiFi 密码"
+        app:passwordToggleEnabled="true"
+        app:endIconMode="password_toggle"
+        app:boxBackgroundColor="@color/card_bg"
+        app:boxStrokeColor="@color/primary"
         android:textColorHint="#888888"
-        android:textColor="@color/white"
-        android:inputType="textPassword"
-        android:background="@color/card_bg"
-        android:padding="12dp"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etWifiPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="@color/white" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnConnectWifi"

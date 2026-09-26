@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- 顶部标题行，包含重置按钮 -->
+        <!-- 顶部标题 + 重置按钮 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,8 +27,8 @@
                 android:textColor="@color/primary" />
             <ImageButton
                 android:id="@+id/btnReset"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_rotate"
                 android:contentDescription="重置连接"
@@ -45,7 +45,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="12dp" />
 
-        <!-- WiFi 信息行：第一行 WiFi 名称和信号，第二行 IP 和复制按钮 -->
+        <!-- WiFi 信息行（第一行） -->
         <TextView
             android:id="@+id/tvWifiInfo"
             android:layout_width="match_parent"
@@ -53,18 +53,21 @@
             android:text="WiFi: -- | 信号: --"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:padding="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp"
             android:background="@color/card_bg"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginBottom="8dp" />
 
+        <!-- IP 行（第二行），与上一行同宽同高 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@color/card_bg"
-            android:padding="8dp"
-            android:layout_marginBottom="12dp">
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:layout_marginBottom="16dp">
             <TextView
                 android:id="@+id/tvIpInfo"
                 android:layout_width="0dp"
@@ -75,8 +78,8 @@
                 android:textSize="14sp" />
             <ImageButton
                 android:id="@+id/btnCopyIp"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@android:drawable/ic_menu_edit"
                 android:contentDescription="复制 IP"

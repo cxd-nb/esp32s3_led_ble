@@ -77,19 +77,18 @@ class MainActivity : AppCompatActivity(), BLEManager.Listener {
         seekBrightness.progress = GlobalState.brightness
         btnScan.visibility = View.VISIBLE
 
-        // 重置按钮：断开连接并重新扫描
         btnReset.setOnClickListener {
             BLEManager.disconnect()
-            btnScan.postDelayed({
-                BLEManager.startScan()
-            }, 500)
+            btnScan.postDelayed({ BLEManager.startScan() }, 500)
         }
 
-        // 复制 IP
         btnCopyIp.setOnClickListener {
+            if (currentIp == "--" || currentIp.isEmpty()) {
+                Toast.makeText(this, "暂无可复制的 IP", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("IP", currentIp)
-            clipboard.setPrimaryClip(clip)
+            clipboard.setPrimaryClip(ClipData.newPlainText("IP", currentIp))
             Toast.makeText(this, "IP 已复制: $currentIp", Toast.LENGTH_SHORT).show()
         }
 
@@ -225,8 +224,10 @@ class MainActivity : AppCompatActivity(), BLEManager.Listener {
         val ssid = parts.getOrNull(0)?.substringAfter("W:") ?: "--"
         val ip = parts.getOrNull(1)?.substringAfter("I:") ?: "--"
         val wifiRssi = parts.getOrNull(2)?.substringAfter("R:") ?: "--"
+        val enabled = parts.getOrNull(3)?.substringAfter("E:") ?: "1"
 
         currentIp = ip
+        GlobalState.wifiEnabled = enabled == "1"
 
         val line1 = "WiFi: $ssid | 信号: $wifiRssi dBm"
         val line2 = "IP: $ip"
