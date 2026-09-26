@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#66CCFF</color>
+    <color name="primary_dark">#3399CC</color>
+    <color name="primary_light">#99DDFF</color>
+    <color name="accent">#FF4081</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="dark_bg">#121212</color>          <!-- 新增：深色背景 -->
+    <color name="card_bg">#1E1E1E</color>          <!-- 新增：卡片深色背景 -->
+    <color name="connected_green">#00FF00</color>  <!-- 新增：连接状态绿色 -->
+    <color name="disconnected_red">#FF4444</color> <!-- 新增：未连接红色 -->
+</resources>

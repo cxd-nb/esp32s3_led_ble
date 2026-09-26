@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_bg"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- 顶部标题行，包含重置按钮 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="ESP32-S3 灯控"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary" />
+            <ImageButton
+                android:id="@+id/btnReset"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_rotate"
+                android:contentDescription="重置连接"
+                android:tint="@color/primary" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="状态：未连接"
+            android:textColor="@color/disconnected_red"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp" />
+
+        <!-- WiFi 信息行：第一行 WiFi 名称和信号，第二行 IP 和复制按钮 -->
+        <TextView
+            android:id="@+id/tvWifiInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WiFi: -- | 信号: --"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:background="@color/card_bg"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@color/card_bg"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:id="@+id/tvIpInfo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="IP: --"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+            <ImageButton
+                android:id="@+id/btnCopyIp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@android:drawable/ic_menu_edit"
+                android:contentDescription="复制 IP"
+                android:tint="@color/primary" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="扫描并连接设备"
+            android:textSize="18sp"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/black"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开灯"
+            android:textSize="18sp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@color/white"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnOpenColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="调整颜色"
+            android:textSize="18sp"
+            android:backgroundTint="@color/primary_dark"
+            android:textColor="@color/white"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnOpenWifi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="WiFi 控制"
+            android:textSize="18sp"
+            android:backgroundTint="@color/primary_dark"
+            android:textColor="@color/white"
+            android:layout_marginBottom="12dp" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="当前颜色" android:textColor="@color/white" android:textSize="14sp" />
+        <View
+            android:id="@+id/viewCurrentColor"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:background="#FFFFFF" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="主灯亮度" android:textSize="16sp" android:textColor="@color/white" />
+        <SeekBar android:id="@+id/seekBrightness" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:max="100" android:progress="100"
+            android:progressTint="@color/primary" android:thumbTint="@color/primary_dark" />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="灯光模式" android:textSize="16sp" android:textColor="@color/white"
+            android:layout_marginTop="8dp" />
+        <RadioGroup android:id="@+id/radioGroupMode"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radioOn" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="常亮" android:checked="true"
+                android:textColor="@color/white" />
+            <RadioButton android:id="@+id/radioBreath" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="呼吸"
+                android:textColor="@color/white" />
+            <RadioButton android:id="@+id/radioRainbow" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="彩虹"
+                android:textColor="@color/white" />
+            <RadioButton android:id="@+id/radioBlink" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="闪烁"
+                android:textColor="@color/white" />
+        </RadioGroup>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical"
+            android:layout_marginTop="8dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="闪烁间隔(ms)：" android:textColor="@color/white" />
+            <EditText android:id="@+id/etBlinkInterval"
+                android:layout_width="0dp" android:layout_weight="1"
+                android:layout_height="wrap_content" android:inputType="number" android:text="500"
+                android:textColor="@color/white" />
+            <Button android:id="@+id/btnApplyBlink"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="应用" android:backgroundTint="@color/primary_dark"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="系统状态灯亮度" android:textSize="16sp" android:textColor="@color/white"
+            android:layout_marginTop="12dp" />
+        <SeekBar android:id="@+id/seekStatusBright" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:max="100" android:progress="20"
+            android:progressTint="@color/primary" android:thumbTint="@color/primary_dark" />
+
+    </LinearLayout>
+</ScrollView>
